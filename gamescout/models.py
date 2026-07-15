@@ -1,10 +1,11 @@
 from datetime import datetime
 from typing import List, Optional
+
 from sqlmodel import Field, Relationship, SQLModel
 
 
 class ProductType(SQLModel, table=True):
-    
+
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str = Field(unique=True, min_length=1)
 

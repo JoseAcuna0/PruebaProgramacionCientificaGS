@@ -1,5 +1,7 @@
 from sqlmodel import Session, SQLModel, create_engine
+
 from gamescout.models import Product, ProductType
+
 
 def test_product_and_type_relationship() -> None:
     engine = create_engine("sqlite:///:memory:")

@@ -1,6 +1,7 @@
 import logging
 import re
 from typing import Any, Dict, List
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -63,9 +64,13 @@ class Scraper:
 
                 for card in cards:
                     try:
-                        title_elem = card.find_element(By.CSS_SELECTOR, "h2, h3, .title, [class*='title']")
+                        title_elem = card.find_element(
+                            By.CSS_SELECTOR, "h2, h3, .title, [class*='title']"
+                        )
                         price_elem = card.find_element(By.CSS_SELECTOR, ".price, [class*='price']")
-                        type_elem = card.find_element(By.CSS_SELECTOR, ".category, [class*='category']")
+                        type_elem = card.find_element(
+                            By.CSS_SELECTOR, ".category, [class*='category']"
+                        )
 
                         raw_url = card.get_attribute("href")
                         if not raw_url:
