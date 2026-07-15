@@ -2,7 +2,7 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = pruebagamescout
+PROJECT_NAME = gamescout
 PYTHON_VERSION = 3.11
 PYTHON_INTERPRETER = python
 
@@ -10,14 +10,10 @@ PYTHON_INTERPRETER = python
 # COMMANDS                                                                      #
 #################################################################################
 
-
 ## Install Python dependencies
-.PHONY: requirements
-requirements:
+.PHONY: install
+install:
 	conda env update --name $(PROJECT_NAME) --file environment.yml --prune
-	
-
-
 
 ## Delete all compiled Python files
 .PHONY: clean
@@ -25,48 +21,34 @@ clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 
-
-## Lint using flake8, black, and isort (use `make format` to do formatting)
+## Lint using flake8, black, and isort
 .PHONY: lint
 lint:
-	flake8 gamescout
-	isort --check --diff gamescout
-	black --check gamescout
+	flake8 --max-line-length 100 gamescout tests
+	isort --check --diff gamescout tests
+	black --check --line-length 100 gamescout tests
 
-## Format source code with black
+## Format source code with black and isort
 .PHONY: format
 format:
-	isort gamescout
-	black gamescout
+	isort gamescout tests
+	black --line-length 100 gamescout tests
 
-
+## Run main application pipeline
+.PHONY: run
+run:
+	$(PYTHON_INTERPRETER) -m gamescout.main
 
 ## Run tests
 .PHONY: test
 test:
 	python -m pytest tests
 
-
 ## Set up Python interpreter environment
 .PHONY: create_environment
 create_environment:
 	conda env create --name $(PROJECT_NAME) -f environment.yml
-	
 	@echo ">>> conda env created. Activate with:\nconda activate $(PROJECT_NAME)"
-	
-
-
-
-#################################################################################
-# PROJECT RULES                                                                 #
-#################################################################################
-
-
-## Make dataset
-.PHONY: data
-data: requirements
-	$(PYTHON_INTERPRETER) gamescout/dataset.py
-
 
 #################################################################################
 # Self Documenting Commands                                                     #
@@ -84,4 +66,4 @@ endef
 export PRINT_HELP_PYSCRIPT
 
 help:
-	@$(PYTHON_INTERPRETER) -c "${PRINT_HELP_PYSCRIPT}" < $(MAKEFILE_LIST)
+	@$(PYTHON_INTERPRETER) -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
