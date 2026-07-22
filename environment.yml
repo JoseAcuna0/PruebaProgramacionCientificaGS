@@ -14,3 +14,8 @@ dependencies:
       - isort
       - flake8
       - loguru
+      - numpy
+      - numba
+      - streamlit
+      - plotly
+      - pandas
