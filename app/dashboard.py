@@ -1,8 +1,3 @@
-import sys
-from pathlib import Path
-
-sys.path.append(str(Path(__file__).resolve().parent.parent))
-
 import pandas as pd
 import plotly.express as px
 from sqlalchemy.orm import joinedload
@@ -35,8 +30,8 @@ def load_data() -> pd.DataFrame:
 
 
 def main() -> None:
-    st.set_page_config(page_title="GameScout Prueba Dashboard", layout="wide")
-    st.title("GameScout Prueba Dashboard")
+    st.set_page_config(page_title="GameScout Dashboard", layout="wide")
+    st.title("GameScout Dashboard")
 
     df = load_data()
 
