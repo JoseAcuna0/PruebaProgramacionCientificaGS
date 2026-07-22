@@ -1,4 +1,5 @@
 import numpy as np
+
 from app.stats import category_stats, price_zscores
 
 

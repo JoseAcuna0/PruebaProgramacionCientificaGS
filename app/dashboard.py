@@ -65,8 +65,7 @@ def main() -> None:
         filtered_df = filtered_df[filtered_df["type_name"].isin(selected_types)]
 
     filtered_df = filtered_df[
-        (filtered_df["price_eur"] >= price_range[0])
-        & (filtered_df["price_eur"] <= price_range[1])
+        (filtered_df["price_eur"] >= price_range[0]) & (filtered_df["price_eur"] <= price_range[1])
     ]
 
     if search_query.strip():

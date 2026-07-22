@@ -1,6 +1,7 @@
 import math
 import time
 from typing import Dict, Tuple
+
 import numba
 import numpy as np
 
