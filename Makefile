@@ -24,20 +24,25 @@ clean:
 ## Lint using flake8, black, and isort
 .PHONY: lint
 lint:
-	flake8 --max-line-length 100 gamescout tests
-	isort --check --diff gamescout tests
-	black --check --line-length 100 gamescout tests
+	flake8 --max-line-length 100 gamescout tests app
+	isort --check --diff gamescout tests app
+	black --check --line-length 100 gamescout tests app
 
 ## Format source code with black and isort
 .PHONY: format
 format:
-	isort gamescout tests
-	black --line-length 100 gamescout tests
+	isort gamescout tests app
+	black --line-length 100 gamescout tests app
 
 ## Run main application pipeline
 .PHONY: run
 run:
 	$(PYTHON_INTERPRETER) -m gamescout.main
+
+## Run Streamlit dashboard
+.PHONY: dashboard
+dashboard:
+	streamlit run app/dashboard.py
 
 ## Run tests
 .PHONY: test
