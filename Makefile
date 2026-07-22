@@ -42,7 +42,7 @@ run:
 ## Run Streamlit dashboard
 .PHONY: dashboard
 dashboard:
-	streamlit run app/dashboard.py
+	python -m streamlit run app/dashboard.py
 
 ## Run tests
 .PHONY: test

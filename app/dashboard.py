@@ -2,9 +2,9 @@ import pandas as pd
 import plotly.express as px
 from sqlalchemy.orm import joinedload
 from sqlmodel import Session, select
+from stats import category_stats, price_zscores, run_benchmark
 import streamlit as st
 
-from app.stats import category_stats, price_zscores, run_benchmark
 from gamescout.database import get_engine
 from gamescout.models import Product
 
